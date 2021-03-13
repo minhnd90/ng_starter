@@ -7,6 +7,7 @@ import { ChartComponent } from './view/chart/chart.component';
 const routes: Routes = [
   { path: 'table', component: TableComponent },
   { path: 'chart', component: ChartComponent },
+  { path: '', redirectTo: '/table', pathMatch: 'full' },
 ];
 
 @NgModule({
