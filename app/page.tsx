@@ -1,13 +1,16 @@
 import Image from 'next/image'
 import styles from './page.module.css'
+import Button from '@mui/material/Button';
+import { Roboto_Mono } from 'next/font/google'
+const mono = Roboto_Mono({ weight: ["100", "200", "300", "400", "500", "600", "700"], subsets: ['vietnamese'] })
 
 export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
-        <p>
+        <p className={mono.className}>
           Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
+          <code className={`${styles.code} ${mono.className}`}>app/page.tsx</code>
         </p>
         <div>
           <a
@@ -29,14 +32,14 @@ export default function Home() {
       </div>
 
       <div className={styles.center}>
-        <Image
+        <Button variant="contained"><Image
           className={styles.logo}
           src="/next.svg"
           alt="Next.js Logo"
           width={180}
           height={37}
           priority
-        />
+        /></Button>
       </div>
 
       <div className={styles.grid}>
