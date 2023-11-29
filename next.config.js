@@ -1,7 +1,14 @@
 const path = require('path')
-const withNextra = require('nextra')('nextra-theme-blog', './theme.config.jsx')
+const withNextra = require('nextra')({
+  theme: 'nextra-theme-blog',
+  themeConfig: './theme.config.tsx'
+})
 module.exports = withNextra({
-    sassOptions: {
-        includePaths: [path.join(__dirname, 'styles')],
-    },
+  output: 'export',
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
+  },
+  images: {
+    unoptimized: true,
+  },
 })

@@ -24,6 +24,8 @@ body {
   font-variation-settings: 'wght' 450;
   font-variant: common-ligatures contextual;
   letter-spacing: -0.02em;
+  margin: 0;
+  padding: 0;
 }
 b,
 strong,
@@ -62,4 +64,19 @@ img.next-image {
 
 .nav-line .nav-link {
   color: #69778c;
+}
+
+.footer {
+  display: block;
+  margin-top: 8rem;
+
+  a {
+    float: right;
+  }
+  @media screen and (max-width: 480px) {
+    article {
+      padding-top: 2rem;
+      padding-bottom: 4rem;
+    }
+  }
 }

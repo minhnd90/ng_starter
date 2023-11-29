@@ -1,10 +1,10 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import { Head, Html, Main, NextScript } from 'next/document'
 
 export default function Document() {
   const meta = {
     title: 'Next.js Blog Starter Kit',
     description: 'Clone and deploy your own Next.js portfolio in minutes.',
-    image: 'vercel.svg'
+    image: 'next.svg'
   }
 
   return (
