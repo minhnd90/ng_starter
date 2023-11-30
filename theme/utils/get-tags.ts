@@ -2,7 +2,7 @@ import type { MdxFile, PageMapItem } from 'nextra/types'
 import type { BlogFrontMatter } from '../types'
 
 export function split(tags: string | string[] = ''): string[] {
-  return (Array.isArray(tags) ? tags : tags.split(',')).map(s => s.trim())
+  return (Array.isArray(tags) ? tags : tags.split(',')).map((s) => s.trim())
 }
 
 interface Page extends MdxFile {
@@ -30,8 +30,5 @@ export const getStaticTags = (pageMap: PageMapItem[]) => {
 }
 
 export default function getTags(page: MdxFile<BlogFrontMatter>) {
-  if (!page.frontMatter) {
-    return []
-  }
-  return split(page.frontMatter.tag)
+  return page.frontMatter ? split(page.frontMatter.tag) : []
 }

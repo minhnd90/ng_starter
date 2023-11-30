@@ -13,9 +13,7 @@ import {
 import { createPortal } from 'react-dom'
 import { useBlogContext } from './blog-context'
 
-export const HeadingContext = createContext<
-  RefObject<HTMLHeadingElement | null>
->(createRef())
+export const HeadingContext = createContext<RefObject<HTMLHeadingElement | null>>(createRef())
 
 const H1 = ({ children }: { children?: ReactNode }): ReactElement => {
   const ref = useContext(HeadingContext)
@@ -37,24 +35,9 @@ function HeadingLink({
   ...props
 }: ComponentProps<'h2'> & { tag: `h${2 | 3 | 4 | 5 | 6}` }): ReactElement {
   return (
-    <Tag
-      className={
-        // can be added by footnotes
-        className === 'sr-only'
-          ? 'nx-sr-only'
-          : `nx-not-prose subheading-${Tag}`
-      }
-      {...props}
-    >
+    <Tag {...props}>
       {children}
-      {id && (
-        <a
-          href={`#${id}`}
-          id={id}
-          className="subheading-anchor"
-          aria-label="Permalink for this section"
-        />
-      )}
+      {id && <a href={`#${id}`} id={id} className="subheading-anchor" aria-label="Permalink for this section" />}
     </Tag>
   )
 }
@@ -63,12 +46,7 @@ const EXTERNAL_HREF_REGEX = /https?:\/\//
 
 const A = ({ children, href = '', ...props }: ComponentProps<'a'>) => {
   if (EXTERNAL_HREF_REGEX.test(href)) {
-    return (
-      <a href={href} target="_blank" rel="noreferrer" {...props}>
-        {children}
-        <span className="nx-sr-only nx-select-none"> (opens in a new tab)</span>
-      </a>
-    )
+    return <a href={href} target="_blank" rel="noreferrer" {...props}>{children}<span> (opens in a new tab)</span></a>
   }
   return (
     <Link href={href} passHref legacyBehavior>
@@ -87,24 +65,16 @@ const useComponents = (): Components => {
     h5: props => <HeadingLink tag="h5" {...props} />,
     h6: props => <HeadingLink tag="h6" {...props} />,
     a: A,
-    pre: ({ children, ...props }) => (
-      <div className="nx-not-prose">
-        <Pre {...props}>{children}</Pre>
-      </div>
-    ),
+    pre: ({ children, ...props }) => <div><Pre {...props}>{children}</Pre></div>,
     tr: Tr,
     th: Th,
     td: Td,
-    table: props => <Table className="nx-not-prose" {...props} />,
+    table: props => <Table {...props} />,
     code: Code,
     ...config.components
   }
 }
 
-export const MDXTheme = ({
-  children
-}: {
-  children: ReactNode
-}): ReactElement => {
+export const MDXTheme = ({ children }: { children: ReactNode }): ReactElement => {
   return <MDXProvider components={useComponents()}>{children}</MDXProvider>
 }

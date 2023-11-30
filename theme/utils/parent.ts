@@ -7,7 +7,7 @@ export const getParent = ({ opts }: LayoutProps) => {
   const parentPages: (MdxFile | Folder)[] = []
   const { route } = opts
 
-  traverse(opts.pageMap, page => {
+  traverse(opts.pageMap, (page) => {
     if (
       'route' in page &&
       route !== page.route &&
@@ -20,7 +20,7 @@ export const getParent = ({ opts }: LayoutProps) => {
   const parentPage = parentPages
     .reverse()
     .find(
-      page =>
+      (page) =>
         'frontMatter' in page &&
         page.frontMatter &&
         page.frontMatter.type === 'posts'

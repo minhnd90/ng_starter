@@ -5,23 +5,14 @@ import { isValidDate } from './utils/validate'
 
 const BlogContext = createContext<LayoutProps | null>(null)
 
-export const BlogProvider = ({
-  config,
-  children,
-  opts
-}: LayoutProps & { children: ReactNode }): ReactElement => {
+export const BlogProvider = ({ config, children, opts }: LayoutProps & { children: ReactNode }): ReactElement => {
   const { date } = opts.frontMatter
 
   if (date && !isValidDate(date)) {
-    throw new Error(
-      `Invalid date "${date}". Provide date in "YYYY/M/D", "YYYY/M/D H:m", "YYYY-MM-DD", "[YYYY-MM-DD]T[HH:mm]" or "[YYYY-MM-DD]T[HH:mm:ss.SSS]Z" format.`
-    )
+    throw new Error(`Invalid date "${date}". Provide date in "YYYY/M/D", "YYYY/M/D H:m", "YYYY-MM-DD", "[YYYY-MM-DD]T[HH:mm]" or "[YYYY-MM-DD]T[HH:mm:ss.SSS]Z" format.`)
   }
-  return (
-    <BlogContext.Provider value={{ config, opts }}>
-      {children}
-    </BlogContext.Provider>
-  )
+  return <BlogContext.Provider value={{ config, opts }}>{children}</BlogContext.Provider>
+
 }
 
 export const useBlogContext = () => {

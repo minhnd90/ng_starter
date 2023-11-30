@@ -5,7 +5,9 @@ export default function HeadTag({ frontMatter }: { frontMatter: FrontMatter }) {
   const meta = {
     title: frontMatter.title || 'Next.js Blog Starter Kit',
     description: frontMatter.description || 'Clone and deploy your own Next.js portfolio in minutes.',
-    image: frontMatter.image || '/images/default-social-image.png'
+    image: frontMatter.image || '/images/default-social-image.png',
+    tag: frontMatter.tag || 'Next.js, React, TypeScript, Portfolio, Blog',
+    author: frontMatter.author || 'MinhND',
   }
   return (
     <Head>
@@ -20,6 +22,8 @@ export default function HeadTag({ frontMatter }: { frontMatter: FrontMatter }) {
       <meta name="twitter:title" content={meta.title} />
       <meta name="twitter:description" content={meta.description} />
       <meta name="twitter:image" content={meta.image} />
+      <meta name="keywords" content={meta.tag} />
+      <meta name="author" content={meta.author} />
     </Head>
   )
 }
