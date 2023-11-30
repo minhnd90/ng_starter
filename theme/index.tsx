@@ -6,6 +6,7 @@ import { BlogProvider } from './blog-context'
 import { PageLayout } from './page-layout'
 import { PostsLayout } from './posts-layout'
 import type { LayoutProps } from './types'
+import HeadTag from '@/components/headTag'
 
 const layoutMap = {
   post: ArticleLayout,
@@ -39,6 +40,7 @@ export default function Layout({
 }: NextraThemeLayoutProps) {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <HeadTag frontMatter={context.pageOpts.frontMatter} />
       <BlogLayout config={context.themeConfig} opts={context.pageOpts}>
         {children}
       </BlogLayout>
